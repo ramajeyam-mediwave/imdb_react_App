@@ -1,7 +1,7 @@
 import Form from "../components/Form";
 import Layout from "../components/layout";
-import { IUserAdd } from "../type";
 import { addUser } from "../services/api";
+import { IUserAdd } from "../type";
 
 function SignupForm() {
   async function handleAddMovie(user: IUserAdd) {
