@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Nav from "./Nav";
 interface IProps {
   title?: string;
   children: React.ReactNode;
@@ -11,6 +12,7 @@ const Layout = (props: IProps) => {
   }, [props.title]);
   return (
     <>
+      <Nav />
       <main className="container">{props.children}</main>
     </>
   );
