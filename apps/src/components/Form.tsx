@@ -43,7 +43,7 @@ const Form: React.FC<IForm> = ({ handleAddMovie }) => {
           placeholder="Last name"
           onChange={handleChange}
         />
-        <label htmlFor="email">Email address</label>
+        <label htmlFor="email">Email</label>
 
         <input
           type="email"
