@@ -2,9 +2,9 @@ import "@picocss/pico";
 import { Suspense, lazy } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import "./App.css";
-import Home from "./components/home";
-import LoginForm from "./components/loginform";
 import MovieList from "./pages/movie";
+import LoginPage from "./pages/loginform";
+import HomePage from "./pages/home";
 
 const Add = lazy(() => import("./pages/Add"));
 
@@ -13,12 +13,10 @@ function App() {
     <Suspense>
       <BrowserRouter>
         <Routes>
-          
-            <Route path="/add" element={<Add />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<LoginForm />} />
-            <Route path="/movie" element={<MovieList />} />
-          
+          <Route path="/add" element={<Add />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/movie" element={<MovieList />} />
         </Routes>
       </BrowserRouter>
     </Suspense>
