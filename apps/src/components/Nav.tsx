@@ -8,8 +8,8 @@ const Nav = () => {
       </Link>
 
       <ul className="navBar">
-      <li className="signup">
-          <Link to="/add">Add movie</Link>
+        <li className="signup">
+          <Link to="/addmovie">Add movie</Link>
         </li>
         <li className="signup">
           <Link to="/add">SignUp</Link>
