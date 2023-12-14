@@ -15,6 +15,6 @@ export interface IMovie {
   movie_name: string;
   release_year: number;
   image: string;
-  movie_desc:string;
-  movie_rating?:number;
+  movie_desc: string;
+  rating?: number;
 }
