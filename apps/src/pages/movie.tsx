@@ -22,7 +22,7 @@ const MovieList = () => {
     [];
   });
   return (
-    <Layout title="MyIMDb">
+    <Layout title="Movie_list">
       <div className="gridBox">
         {movies.map((m, i) => (
           <div className="movie-card" key={i}>

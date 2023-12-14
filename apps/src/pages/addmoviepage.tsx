@@ -42,7 +42,7 @@ const MovieForm = () => {
   }
   return (
     <>
-      <Layout title="login">
+      <Layout title="Add movie">
         <h1>Movie</h1>
         <form onSubmit={handleSubmit}>
           <label htmlFor="movie_name">MovieName</label>

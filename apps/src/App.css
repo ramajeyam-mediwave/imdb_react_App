@@ -61,3 +61,12 @@ p {
   color: white;
   font-weight: bold;
 }
+
+.button {
+  width: 70%;
+  margin-left: 40px;
+  background-color: rgb(87, 153, 239);
+}
+.button:hover {
+  border: 2px solid white;
+}

@@ -6,6 +6,7 @@ import MovieList from "./pages/movie";
 import LoginPage from "./pages/loginform";
 import HomePage from "./pages/home";
 import MovieForm from "./pages/addmoviepage";
+import SingleMovie from "./pages/singlemoviepage";
 
 const Add = lazy(() => import("./pages/Add"));
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/movie" element={<MovieList />} />
           <Route path="/addmovie" element={<MovieForm />} />
+          <Route path="/onemovie" element={<SingleMovie />}/>
         </Routes>
       </BrowserRouter>
     </Suspense>
