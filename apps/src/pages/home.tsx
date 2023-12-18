@@ -1,12 +1,12 @@
 import Home from "../components/home";
-import Layout from "../components/layout";
+// import Layout from "../components/layout";
 
 function HomePage() {
   return (
   <>
-  <Layout title="HOME">
+  {/* <Layout title="HOME"> */}
   <Home />
-  </Layout>
+  {/* </Layout> */}
   </>)
 }
 

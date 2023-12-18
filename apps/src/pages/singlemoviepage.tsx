@@ -8,7 +8,7 @@ const onemovie = () => {
     movie_name: "",
     image: "",
     movie_desc: "",
-    // addedBy: "",
+    addedBy: "",
     release_year: 0,
     overallRating: 0,
     ratings: [{ rating: 0, ratedBy: "" }],
@@ -39,7 +39,7 @@ const onemovie = () => {
               <h3>{moviedata.movie_name}</h3>
               <p>Year: {moviedata.release_year}</p>
               <p>Rating: {`${moviedata.overallRating}/5`}</p>
-              {/* <p>Addedby: {moviedata.addedBy}</p> */}
+              <p>Addedby: {moviedata.addedBy}</p> 
             </div>
             <div className="right">
               <h4>Ratings</h4>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Nav = () => {
   return (
     <nav className="titleBar">
-      <Link to="/movie" className="logo">
+      <Link to="/movies" className="logo">
         IMDB
       </Link>
 

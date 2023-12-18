@@ -18,9 +18,9 @@ function App() {
           <Route path="/add" element={<Add />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/movie" element={<MovieList />} />
+          <Route path="/movies" element={<MovieList />} />
           <Route path="/addmovie" element={<MovieForm />} />
-          <Route path="/onemovie" element={<SingleMovie />}/>
+          <Route path="/movies/:id" element={<SingleMovie />} />
         </Routes>
       </BrowserRouter>
     </Suspense>
