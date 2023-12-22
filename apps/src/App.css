@@ -7,10 +7,13 @@ h1 {
   color: white;
 }
 body {
-  background-color: black;
-  height: 180vh;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  background-color: black;
+  min-height: 100vh;
+}
+:root {
+  background-color: rgb(0,0,0);
 }
 .center-container {
   display: flex;
@@ -115,7 +118,7 @@ p {
   position: absolute;
   z-index: 1;
   top: 20px;
-  width: 80%;
+  width: 94%;
   background-color: #585858;
 }
 .delete {
@@ -152,4 +155,26 @@ p {
 .content {
   display: flex;
   justify-content: space-around;
+}
+
+/* .rating {
+  display: flex;
+  width: 338px;
+  justify-content: space-between;
+  align-items: center;
+}
+.rating button {
+  margin-top: 20px;
+  width: 100px;
+} */
+.star-rating {
+  font-size: 24px;
+}
+
+.star {
+  color: #ccc;
+}
+
+.star.filled {
+  color: #ffd700;
 }

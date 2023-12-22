@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getMovie } from "../services/api";
+import { getMovie, addRating } from "../services/api";
+import MyComponent from "../components/rating"; 
 
-const onemovie = () => {
+const Onemovie = () => {
   const [moviedata, setMoviedata] = useState({
     movie_id: "",
     movie_name: "",
@@ -13,20 +14,74 @@ const onemovie = () => {
     overallRating: 0,
     ratings: [{ rating: 0, ratedBy: "" }],
   });
+  const [errorMessage, setErrorMessage] = useState("");
   const { id } = useParams();
+
   useEffect(() => {
     getMovieFromAPI(id);
   }, [id]);
-  async function getMovieFromAPI(id: string | any) {
+
+  async function getMovieFromAPI(id: any) {
     try {
       const response = await getMovie(id || "");
       setMoviedata(response.data);
-    } catch (error) {
-      if (error instanceof Error) {
-        console.log(error);
+      setErrorMessage("");
+    } catch (error: any) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        setErrorMessage(error.response.data.message);
+      } else {
+        setErrorMessage("An error occurred while fetching movie data.");
       }
     }
   }
+
+  function sendRating(rate: number) {
+    addRatingFromAPI(id, rate);
+  }
+
+  async function addRatingFromAPI(id: string | undefined, rate: number) {
+    try {
+      const payload = {
+        rating: rate,
+      };
+      const response = await addRating(id || "", payload);
+      console.log(response.data);
+      setErrorMessage("");
+    } catch (error: any) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        setErrorMessage(error.response.data.message);
+      } else {
+        setErrorMessage("An error occurred while adding the rating.");
+      }
+    }
+  }
+
+  const renderStars = (rating: number) => {
+    const roundedRating = Math.round(rating);
+
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      const starClassName = i <= roundedRating ? "filled" : "empty";
+      stars.push(
+        <span key={i} className={`star ${starClassName}`}>
+          &#9733;
+        </span>
+      );
+    }
+
+    return stars;
+  };
+
+
+  
   return (
     <>
       <div className="big-card">
@@ -38,26 +93,30 @@ const onemovie = () => {
             <div className="left">
               <h3>{moviedata.movie_name}</h3>
               <p>Year: {moviedata.release_year}</p>
-              <p>Rating: {`${moviedata.overallRating}/5`}</p>
-              <p>Addedby: {moviedata.addedBy}</p> 
+              <p>Rating: {renderStars(moviedata.overallRating)}</p>
+              <p>Addedby: {moviedata.addedBy}</p>
             </div>
             <div className="right">
               <h4>Ratings</h4>
               {moviedata?.ratings.map((r, i) => (
                 <div className="ratings" key={i}>
                   <p>
-                    rating={r.rating}
+                    Rating: {renderStars(r.rating)}
                     <br />
-                    ratedby:{r.ratedBy}
+                    Rated By: {r.ratedBy}
                   </p>
                 </div>
               ))}
             </div>
           </div>
         </div>
+        <div className="rating">
+          <MyComponent sendRating={sendRating} />
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+        </div>
       </div>
     </>
   );
 };
 
-export default onemovie;
+export default Onemovie;

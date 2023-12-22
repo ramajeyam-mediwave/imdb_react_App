@@ -3,6 +3,11 @@ import { getToken } from "../services/api";
 import { IUserAdd } from "../type";
 function LoginPage() {
   async function handleLogin(user: IUserAdd) {
+    await newFunction(user);
+  }
+  return <LoginForm handleLogin={(user) => handleLogin(user)} />;
+
+  async function newFunction(user: IUserAdd) {
     try {
       const userPayload = {
         email: user.email,
@@ -18,7 +23,6 @@ function LoginPage() {
       }
     }
   }
-  return <LoginForm handleLogin={(user) => handleLogin(user)} />;
 }
 
 export default LoginPage;

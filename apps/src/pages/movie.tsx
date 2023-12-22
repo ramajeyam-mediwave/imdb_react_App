@@ -3,9 +3,12 @@ import Layout from "../components/layout";
 import { useEffect, useState } from "react";
 import { getMovies } from "../services/api";
 import { IMovie } from "../type";
+import PaginationComponent from "../components/pagination";
 
 const MovieList = () => {
   const [movies, setMovies] = useState<IMovie[]>([]);
+  const [count, setCount] = useState(0);
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
     async function getMoviesFromAPI() {
@@ -29,6 +32,9 @@ const MovieList = () => {
             <MovieCard movie={m} />
           </div>
         ))}
+      </div>
+      <div>
+        <PaginationComponent count={count} sendPage={sendPage} />
       </div>
     </Layout>
   );

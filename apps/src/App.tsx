@@ -7,6 +7,7 @@ import LoginPage from "./pages/loginform";
 import HomePage from "./pages/home";
 import MovieForm from "./pages/addmoviepage";
 import SingleMovie from "./pages/singlemoviepage";
+import PrivateRoutes from "./components/PrivateRoutes";
 
 const Add = lazy(() => import("./pages/Add"));
 
@@ -18,9 +19,11 @@ function App() {
           <Route path="/add" element={<Add />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/movies" element={<MovieList />} />
-          <Route path="/addmovie" element={<MovieForm />} />
-          <Route path="/movies/:id" element={<SingleMovie />} />
+            <Route path="/movies" element={<MovieList />} />
+          <Route element={<PrivateRoutes />}>
+            <Route path="/addmovie" element={<MovieForm />} />
+            <Route path="/movies/:id" element={<SingleMovie />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </Suspense>

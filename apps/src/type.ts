@@ -20,3 +20,6 @@ export interface IMovie {
   movie_id?:number
   
 }
+export interface IRating {
+  rating: number;
+}

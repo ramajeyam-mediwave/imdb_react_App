@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IMovie, IUserAdd } from "../type";
+import { IMovie, IUserAdd,IRating } from "../type";
 
 
 const axiosInstancewithheader = axios.create({
@@ -8,6 +8,19 @@ const axiosInstancewithheader = axios.create({
     Authorization: `Bearer ${localStorage.getItem("token")}`,
   },
 });
+
+const setHeaders = () => {
+  const token = localStorage.getItem("token");
+  let headers = {};
+  if (token) {
+    headers = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+  }
+  return headers;
+};
 
 const axiosInstance = axios.create({
   baseURL: "http://localhost:5001/",
@@ -34,6 +47,10 @@ export const getMovies = () => {
 
 export const addMovie = (payload: IMovie) => {
   return axiosInstancewithheader.post("/movie", payload);
+};
+
+export const addRating = (id: string, payload: IRating) => {
+  return axiosInstance.post(`/movie/rating/${id}`, payload, setHeaders());
 };
 
 export const updateMovie = (payload: IMovie, movieId: number) => {

@@ -18,5 +18,5 @@ const MovieCard: React.FC<IMovieCard> = ({ movie }) => {
     </>
   );
 };
-
+ 
 export default MovieCard;
