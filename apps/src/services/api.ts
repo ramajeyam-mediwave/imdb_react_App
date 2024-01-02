@@ -41,10 +41,20 @@ export const getToken = (payload: IUserAdd) => {
 export const getUser = () => {
   return axiosInstance.post("/users/u");
 };
-export const getMovies = () => {
-  return axiosInstancewithheader.get("/movies");
-};
+// export const getMovies = () => {
+//   return axiosInstancewithheader.get("/movies");
+// };
 
+
+export const getMovies = (
+  page: number,
+  search: string,
+  selectedOption: string
+) => {
+  return axiosInstance.get(
+    `/movies?page=${page}&search=${search}&movie_name=${selectedOption}`
+  );
+};
 export const addMovie = (payload: IMovie) => {
   return axiosInstancewithheader.post("/movie", payload);
 };

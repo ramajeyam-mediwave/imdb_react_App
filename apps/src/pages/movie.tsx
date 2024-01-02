@@ -9,26 +9,56 @@ const MovieList = () => {
   const [movies, setMovies] = useState<IMovie[]>([]);
   const [count, setCount] = useState(0);
   const [page, setPage] = useState(0);
+  const [search, setSearch] = useState("");
+  const [selectedOption, setSelectedOption] = useState("");
+
+  
 
   useEffect(() => {
-    async function getMoviesFromAPI() {
-      try {
-        const response = await getMovies();
-        setMovies(response.data);
-      } catch (error) {
-        if (error instanceof Error) {
-          console.log(error.message);
-        }
+    getMoviesFromAPI();
+  }, [search, selectedOption, page]);
+  async function getMoviesFromAPI() {
+    try {
+      const response = await getMovies(page, search, selectedOption);
+      setMovies(response.data.movies);
+      setCount(response.data.totalMovies - 4);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
       }
     }
-    getMoviesFromAPI();
-    [];
-  });
+  };
+
+  function sendPage(currentpage: number) {
+    setPage(currentpage);
+    
+  }
   return (
-    <Layout title="Movie_list">
+    <Layout title="MyIMDb">
+      <div className="searchbar">
+        <input
+          className="nav-inp"
+          type="text"
+          placeholder="search"
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <select
+          className="filter"
+          name="filter"
+          id="filter"
+          value={selectedOption}
+          onChange={(e) => setSelectedOption(e.target.value)}
+        >
+          <option selected disabled>
+            filter
+          </option>
+          <option value="ASC">A-Z</option>
+          <option value="DESC">Z-A</option>
+        </select>
+      </div>
       <div className="gridBox">
-        {movies.map((m, i) => (
-          <div className="movie-card" key={i}>
+        {movies.map((m) => (
+          <div className="movie-card-div" key={m.movie_id}>
             <MovieCard movie={m} />
           </div>
         ))}
