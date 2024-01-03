@@ -2,7 +2,10 @@ import { useState } from "react";
 import { IUserAdd } from "../type";
 interface IForm {
   handleAddMovie: (movie: IUserAdd) => void;
+  details?: IUserAdd;
+  type?: string;
 }
+
 const Form: React.FC<IForm> = ({ handleAddMovie }) => {
   const [user, setUser] = useState<IUserAdd>({
     first_name: "",

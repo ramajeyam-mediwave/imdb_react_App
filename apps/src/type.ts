@@ -3,8 +3,8 @@ export interface IUserAdd {
   last_name?: string;
   email: string;
   user_name?: string;
-  user_password: string;
   phone_no?: string;
+  user_password?: string;
 }
 export interface Ilogin {
   email: string;
@@ -22,4 +22,7 @@ export interface IMovie {
 }
 export interface IRating {
   rating: number;
+}
+export interface IForm {
+  type: string;
 }

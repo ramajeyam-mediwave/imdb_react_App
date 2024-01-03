@@ -2,6 +2,7 @@ import { useState } from "react";
 import { IMovie } from "../type";
 import Layout from "../components/layout";
 import { addMovie } from "../services/api";
+import Modal from "../components/Modal";
 
 const MovieForm = () => {
   const [moviedata, setMoviedata] = useState<IMovie>({
@@ -10,6 +11,10 @@ const MovieForm = () => {
     movie_desc: "",
     release_year: 0,
   });
+
+  const [showModal, setShowModal] = useState(false);
+  //  const [error, setError] = useState<string>("");
+
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setMoviedata({ ...moviedata, [name]: value });
@@ -33,13 +38,22 @@ const MovieForm = () => {
       };
       const response = await addMovie(MoviePayload);
       console.log(response);
+      setShowModal(true);
+      
       
     } catch (error) {
       if (error instanceof Error) {
         console.error("Error deleting movie:", error);
+        // setError(error.message);
       }
+      
     }
   }
+
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
   return (
     <>
       <Layout title="Add movie">
@@ -93,6 +107,10 @@ const MovieForm = () => {
           <button type="submit">Submit</button>
         </form>
       </Layout>
+
+      {showModal && (
+        <Modal message="Movie added successfully!" onClose={closeModal} />
+      )}
     </>
   );
 };

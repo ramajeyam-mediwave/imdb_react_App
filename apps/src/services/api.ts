@@ -1,5 +1,6 @@
 import axios from "axios";
-import { IMovie, IUserAdd,IRating } from "../type";
+import { IMovie, IUserAdd, IRating } from "../type";
+import { jwtDecode } from "jwt-decode";
 
 
 const axiosInstancewithheader = axios.create({
@@ -13,38 +14,50 @@ const setHeaders = () => {
   const token = localStorage.getItem("token");
   let headers = {};
   if (token) {
-    headers = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
+    let decodedToken = jwtDecode(token);
+    console.log("Decoded Token", decodedToken);
+    let currentDate = new Date();
+
+    if (decodedToken.exp && decodedToken.exp < currentDate.getTime() / 1000) {
+      console.log("Token expired.");
+      localStorage.clear();
+    } else {
+      headers = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      return headers;
+    }
   }
-  return headers;
 };
 
 const axiosInstance = axios.create({
   baseURL: "http://localhost:5001/",
 });
 
+export const updateUser = (payload: IUserAdd) => {
+  return axiosInstance.patch("/update", payload, setHeaders());
+};
 
 export const addUser = (payload: IUserAdd) => {
   return axiosInstance.post("/signup", payload);
 };
-
-
-
 
 export const getToken = (payload: IUserAdd) => {
   return axiosInstance.post("/login", payload);
 };
 
 export const getUser = () => {
-  return axiosInstance.post("/users/u");
+  return axiosInstance.get("/user", setHeaders());
 };
+
+// export const getUser = () => {
+//   return axiosInstance.post("/users/u");
+// };
 // export const getMovies = () => {
 //   return axiosInstancewithheader.get("/movies");
 // };
-
 
 export const getMovies = (
   page: number,
