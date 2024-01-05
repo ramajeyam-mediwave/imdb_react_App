@@ -3,7 +3,7 @@ import Layout from "../components/layout";
 import { IUserAdd } from "../type";
 import { useNavigate } from "react-router-dom";
 interface ILoginForm {
-  // handleLogin: (movie: IUserAdd) => void;
+ 
   handleLogin: (user: IUserAdd) => Promise<void>; 
 }
 const LoginForm: React.FC<ILoginForm> = ({ handleLogin }) => {
@@ -28,7 +28,7 @@ const LoginForm: React.FC<ILoginForm> = ({ handleLogin }) => {
 
   return (
     <Layout title="Login">
-      <div className="">
+      <div className="login-form">
         <h1>Login</h1>
         <form onSubmit={handleSubmit}>
           <label>
@@ -46,9 +46,10 @@ const LoginForm: React.FC<ILoginForm> = ({ handleLogin }) => {
             />
           </label>
           <br />
-          <button type="submit">Login</button>
+          <button type="submit" className="log-in">Login</button>
         </form>
       </div>
+      
     </Layout>
   );
 };

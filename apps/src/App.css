@@ -185,3 +185,45 @@ p {
   height: 50px;
 
 }
+.total-div{
+  background-color: #fff;
+  width: 70%;
+  margin-left: 10%;
+  border-radius: 16px;
+  padding: 6px;
+
+}
+.update-btn ,.log-out{
+  width: 30%;
+  margin: 10px auto;
+  background-color: #ffd700;
+  border: 1px solid black;
+  color: black;
+  
+  
+}
+.log-in{
+  width: 30%;
+  margin: 10px auto;
+  background-color: #ffd700;
+  border: 1px solid black;
+  color: black;
+}
+/* .login-form{
+  background-color: #fff;
+  width: 70%;
+  margin-left: 10%;
+  border-radius: 16px;
+  padding: 6px;
+  
+} */
+
+.text{
+  margin-left: 30px;
+  margin-top: 30px;
+}
+
+.container a{
+  
+  text-decoration: none;
+}

@@ -12,9 +12,8 @@ const MovieForm = () => {
     release_year: 0,
   });
 
-  const [showModal, setShowModal] = useState(false);
-  //  const [error, setError] = useState<string>("");
-
+  const [error, setError] = useState<string>("");
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setMoviedata({ ...moviedata, [name]: value });
@@ -31,33 +30,30 @@ const MovieForm = () => {
     try {
       const MoviePayload = {
         movie_name: movie.movie_name,
-        release_year: movie.release_year,
-        movie_desc: movie.movie_desc,
         image: movie.image,
-        
+        movie_desc: movie.movie_desc,
+        release_year: movie.release_year,
       };
+      console.log(MoviePayload);
       const response = await addMovie(MoviePayload);
-      console.log(response);
-      setShowModal(true);
-      
-      
-    } catch (error) {
-      if (error instanceof Error) {
-        console.error("Error deleting movie:", error);
-        // setError(error.message);
-      }
-      
+      console.log(response.data.gen_token);
+      localStorage.setItem("token", response.data.gen_token);
+      setError("");
+      setIsModalOpen(true);
+    } catch (error: any) {
+      console.log(error.response.data);
+      setError(error.response.data.message);
+      setIsModalOpen(true);
     }
   }
 
-
-  const closeModal = () => {
-    setShowModal(false);
-  };
+  function handleCloseModal() {
+    setIsModalOpen(false);
+  }
   return (
     <>
-      <Layout title="Add movie">
-        <h1>Movie</h1>
+      <Layout title="movieForm">
+        <h1>MovieForm</h1>
         <form onSubmit={handleSubmit}>
           <label htmlFor="movie_name">MovieName</label>
 
@@ -103,14 +99,11 @@ const MovieForm = () => {
             onChange={handleChange}
             required
           />
-
+          {/* <h3 >{error}</h3> */}
           <button type="submit">Submit</button>
         </form>
+        <Modal isOpen={isModalOpen} onClose={handleCloseModal} error={error} />
       </Layout>
-
-      {showModal && (
-        <Modal message="Movie added successfully!" onClose={closeModal} />
-      )}
     </>
   );
 };

@@ -32,20 +32,22 @@ const User = () => {
   return (
     <>
       <Layout title="account">
-        <div>
+        <div className="total-div">
+         
           <h3 style={{ color: "blue", textAlign: "center" }}>{error}</h3>
-          <div>
-            <h2>firstname: {user?.first_name}</h2>
-            <h2>lastname: {user?.last_name}</h2>
-            <h2>user_name: {user?.user_name}</h2>
-            <h2>email: {user?.email}</h2>
-            <h2>phone_no: {user?.phone_no}</h2>
+          <div className="text" >
+            <h2>Firstname: {user?.first_name}</h2>
+            <h2>Lastname: {user?.last_name}</h2>
+            <h2>User_name: {user?.user_name}</h2>
+            <h2>Email: {user?.email}</h2>
+            <h2>Phone_no: {user?.phone_no}</h2>
           </div>
-          <button onClick={handleLogout}>Log out</button>
-        </div>
+          <button onClick={handleLogout} className="log-out">Log out</button>
+        
         <Link to="/update">
               <button className="update-btn">Update</button>
             </Link>
+            </div>
       </Layout>
     </>
   );

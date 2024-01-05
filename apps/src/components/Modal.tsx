@@ -1,19 +1,24 @@
-
+// Modal.tsx
 import React from "react";
 
 interface ModalProps {
-  message: string;
+  isOpen: boolean;
   onClose: () => void;
+  error: string;
 }
 
-const Modal: React.FC<ModalProps> = ({ message, onClose }) => {
+const Modal: React.FC<ModalProps> = ({ isOpen, onClose, error }) => {
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <p>{message}</p>
-        <button onClick={onClose}>Close</button>
-      </div>
-    </div>
+    <>
+      {isOpen && (
+        <dialog open={isOpen} onClose={onClose}>
+          <article>
+            <h3>{error}</h3>
+            <button onClick={onClose}>Close</button>
+          </article>
+        </dialog>
+      )}
+    </>
   );
 };
 
