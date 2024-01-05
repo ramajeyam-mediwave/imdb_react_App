@@ -13,12 +13,14 @@ function UpdateForm() {
     phone_no: "",
   });
   const [error, setError] = useState<string>("");
+  // const [user, setUser] = useState<IUserAdd>(details);
 
   useEffect(() => {
+   
     async function getUserFromAPI() {
       try {
         const response = await getUser();
-        setDetails(response.data); // Assuming response.data is an object
+        setDetails(response.data.searchUser);
       } catch (error: any) {
         console.log(error);
         setError(
@@ -27,17 +29,20 @@ function UpdateForm() {
         );
       }
     }
+    
+    
     getUserFromAPI();
   }, []);
 
-  async function handleUpdateUser(user: IUserAdd) {
+  async function handleUpdateUser(updatedUser: IUserAdd) {
     try {
-      const response = await updateUser(user);
+      const response = await updateUser(updatedUser);
       console.log(response);
     } catch (error: any) {
       console.log(error);
       setError(
-        error.response?.data.message || "An error occurred while updating user details."
+        error.response?.data.message ||
+          "An error occurred while updating user details."
       );
     }
   }
@@ -51,7 +56,7 @@ function UpdateForm() {
         <Form
           details={details}
           type="update"
-          handleAddMovie={handleUpdateUser}
+          handleAddMovie={handleUpdateUser} 
         />
         {error && <p>{error}</p>}
       </Layout>

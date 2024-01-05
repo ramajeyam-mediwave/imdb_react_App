@@ -47,6 +47,10 @@ const User = () => {
         <Link to="/update">
               <button className="update-btn">Update</button>
             </Link>
+
+            <Link to="/changepass">
+              <button className="update-btn">Change Password</button>
+            </Link>
             </div>
       </Layout>
     </>

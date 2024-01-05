@@ -27,7 +27,7 @@ function SignupForm() {
     <>
       <Layout title="signup">
         <h1>Signup</h1>
-        <Form handleAddMovie={handleAddMovie} />
+        <Form handleAddMovie={handleAddMovie} type="signup" />
       </Layout>
     </>
   );

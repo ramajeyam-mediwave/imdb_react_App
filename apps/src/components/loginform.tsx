@@ -1,10 +1,9 @@
 import { useState } from "react";
 import Layout from "../components/layout";
 import { IUserAdd } from "../type";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 interface ILoginForm {
- 
-  handleLogin: (user: IUserAdd) => Promise<void>; 
+  handleLogin: (user: IUserAdd) => Promise<void>;
 }
 const LoginForm: React.FC<ILoginForm> = ({ handleLogin }) => {
   const [user, setUser] = useState<IUserAdd>({
@@ -21,8 +20,7 @@ const LoginForm: React.FC<ILoginForm> = ({ handleLogin }) => {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     handleLogin(user).then(() => {
-      
-      navigate('/movies');
+      navigate("/movies");
     });
   }
 
@@ -46,10 +44,15 @@ const LoginForm: React.FC<ILoginForm> = ({ handleLogin }) => {
             />
           </label>
           <br />
-          <button type="submit" className="log-in">Login</button>
+          <button type="submit" className="log-in">
+            Login
+          </button>
+
+          <Link to="/forget">
+            <button className="update-btn">forget Password</button>
+          </Link>
         </form>
       </div>
-      
     </Layout>
   );
 };

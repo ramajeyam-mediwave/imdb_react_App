@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IMovie, IUserAdd, IRating } from "../type";
+import { IMovie, IUserAdd, IRating, IResetPass } from "../type";
 import { jwtDecode } from "jwt-decode";
 
 
@@ -46,6 +46,9 @@ export const addUser = (payload: IUserAdd) => {
 
 export const getToken = (payload: IUserAdd) => {
   return axiosInstance.post("/login", payload);
+};
+export const updateUserPassword = (payload: IResetPass) => {
+  return axiosInstance.put("/u/update/password", payload, setHeaders());
 };
 
 export const getUser = () => {

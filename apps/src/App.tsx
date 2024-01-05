@@ -10,6 +10,7 @@ import SingleMovie from "./pages/singlemoviepage";
 import PrivateRoutes from "./components/PrivateRoutes";
 import User from "./pages/user";
 import UpdateForm from "./pages/UpdateForm";
+import ChangePassword from "./pages/ChangePassword";
 
 const Add = lazy(() => import("./pages/Add"));
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/movies/:id" element={<SingleMovie />} />
             <Route path="/user" element={<User />} />
             <Route path="/update" element={<UpdateForm />} />
+            <Route path="/changepass" element={<ChangePassword />} />
           </Route>
         </Routes>
       </BrowserRouter>

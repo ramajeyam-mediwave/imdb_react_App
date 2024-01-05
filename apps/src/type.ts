@@ -26,3 +26,7 @@ export interface IRating {
 export interface IForm {
   type: string;
 }
+export interface IResetPass {
+  old_password: string;
+  new_password: string;
+}
