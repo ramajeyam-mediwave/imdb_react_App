@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IMovie, IUserAdd, IRating, IResetPass } from "../type";
+import { IMovie, IUserAdd, IRating, IResetPass, Iemail, Iotp } from "../type";
 import { jwtDecode } from "jwt-decode";
 
 
@@ -51,6 +51,11 @@ export const updateUserPassword = (payload: IResetPass) => {
   return axiosInstance.put("/u/update/password", payload, setHeaders());
 };
 
+
+export const forgetPasswordApi = (payload: Iemail) => {
+  return axiosInstance.post("/forget/password", payload);
+};
+
 export const getUser = () => {
   return axiosInstance.get("/user", setHeaders());
 };
@@ -75,6 +80,10 @@ export const addMovie = (payload: IMovie) => {
   return axiosInstancewithheader.post("/movie", payload);
 };
 
+export const otpVerificationApi = (payload: Iotp, id: string) => {
+  return axiosInstance.post(`/otp/verify/${id}`, payload);
+};
+
 export const addRating = (id: string, payload: IRating) => {
   return axiosInstance.post(`/movie/rating/${id}`, payload, setHeaders());
 };
@@ -87,6 +96,14 @@ export const deleteMovie = (movieId: number) => {
   return axiosInstance.delete(`/movies/${movieId}`);
 };
 
+export const setNewPassword = (payload: IResetPass, id: string) => {
+  return axiosInstance.patch(`/update/new/password/${id}`, payload);
+};
+
 export const getMovie = async (movieId: number) => {
   return axiosInstance.get(`/movies/${movieId}`);
+};
+
+export const deleteMovieApi = (movieId: string) => {
+  return axiosInstance.delete(`/movies/${movieId}`, setHeaders());
 };

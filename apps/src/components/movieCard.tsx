@@ -5,6 +5,9 @@ interface IMovieCard {
   movie: IMovie;
 }
 
+
+
+
 const MovieCard: React.FC<IMovieCard> = ({ movie }) => {
   return (
     <>

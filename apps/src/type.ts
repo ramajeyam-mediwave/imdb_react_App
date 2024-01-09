@@ -26,7 +26,16 @@ export interface IRating {
 export interface IForm {
   type: string;
 }
+
+export interface Iotp {
+  otp: number;
+}
+
+export interface Iemail {
+  email: string;
+}
 export interface IResetPass {
-  old_password: string;
+  old_password?: string;
   new_password: string;
+
 }

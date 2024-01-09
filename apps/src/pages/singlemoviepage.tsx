@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getMovie, addRating } from "../services/api";
-import MyComponent from "../components/rating"; 
+import { useNavigate, useParams } from "react-router-dom";
+import { getMovie, addRating, deleteMovieApi } from "../services/api";
+import MyComponent from "../components/rating";
 
 const Onemovie = () => {
   const [moviedata, setMoviedata] = useState({
@@ -16,6 +16,7 @@ const Onemovie = () => {
   });
   const [errorMessage, setErrorMessage] = useState("");
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getMovieFromAPI(id);
@@ -80,8 +81,27 @@ const Onemovie = () => {
     return stars;
   };
 
+  const handleDelete = () => {
+    console.log("delete");
+    deleteMovie(id);
+  };
 
-  
+  const deleteMovie = async (id: string | undefined) => {
+    try {
+      if (id) {
+        await deleteMovieApi(id);
+        navigate("/");
+      }
+    } catch (error: any) {
+      if (error) {
+        console.log(error);
+      }
+      setErrorMessage(
+        error.response.data.message || error.message.data.message[0]
+      );
+    }
+  };
+
   return (
     <>
       <div className="big-card">
@@ -107,6 +127,7 @@ const Onemovie = () => {
                   </p>
                 </div>
               ))}
+              <button onClick={handleDelete}>Delete</button>
             </div>
           </div>
         </div>
@@ -114,6 +135,8 @@ const Onemovie = () => {
           <MyComponent sendRating={sendRating} />
           {errorMessage && <p className="error-message">{errorMessage}</p>}
         </div>
+
+        <div></div>
       </div>
     </>
   );

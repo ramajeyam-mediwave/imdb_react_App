@@ -11,6 +11,9 @@ import PrivateRoutes from "./components/PrivateRoutes";
 import User from "./pages/user";
 import UpdateForm from "./pages/UpdateForm";
 import ChangePassword from "./pages/ChangePassword";
+import ForgetPassword from "./pages/ForgetPassword";
+import OtpPage from "./pages/OtpPage";
+import UpdateNewPassword from "./pages/updateNewPassword";
 
 const Add = lazy(() => import("./pages/Add"));
 
@@ -22,6 +25,9 @@ function App() {
           <Route path="/add" element={<Add />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/forget" element={<ForgetPassword />} />
+          <Route path="/otp/:id" element={<OtpPage />} />
+          <Route path="/setpassword/:id" element={<UpdateNewPassword />} />
           <Route element={<PrivateRoutes />}>
             <Route path="/movies" element={<MovieList />} />
             <Route path="/addmovie" element={<MovieForm />} />
@@ -29,6 +35,7 @@ function App() {
             <Route path="/user" element={<User />} />
             <Route path="/update" element={<UpdateForm />} />
             <Route path="/changepass" element={<ChangePassword />} />
+           
           </Route>
         </Routes>
       </BrowserRouter>
