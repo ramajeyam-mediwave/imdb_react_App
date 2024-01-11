@@ -49,7 +49,7 @@ const MovieList = () => {
           value={selectedOption}
           onChange={(e) => setSelectedOption(e.target.value)}
         >
-          <option selected disabled>
+          <option disabled>
             filter
           </option>
           <option value="ASC">A-Z</option>

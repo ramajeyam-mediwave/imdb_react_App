@@ -14,7 +14,7 @@ export interface Ilogin {
 export interface IMovie {
   movie_name: string;
   release_year: number;
-  image: string;
+  image: File | string;
   movie_desc: string;
   rating?: number;
   movie_id?:number

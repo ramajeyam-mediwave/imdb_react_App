@@ -5,13 +5,14 @@ interface IMovieCard {
   movie: IMovie;
 }
 
-
-
-
 const MovieCard: React.FC<IMovieCard> = ({ movie }) => {
   return (
     <>
-      <img className="" src={movie.image} alt={movie.movie_name} />
+      <img
+        className=""
+        src={`http://localhost:5001/uploads/${movie.image}`}
+        alt={movie.movie_name}
+      />
       <h3>{movie.movie_name}</h3>
       <p>Year: {movie.release_year}</p>
       <p>Rating:{movie.rating}</p>

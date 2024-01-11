@@ -76,7 +76,7 @@ export const getMovies = (
     `/movies?page=${page}&search=${search}&movie_name=${selectedOption}`
   );
 };
-export const addMovie = (payload: IMovie) => {
+export const addMovie = (payload: FormData) => {
   return axiosInstancewithheader.post("/movie", payload);
 };
 

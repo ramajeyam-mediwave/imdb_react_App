@@ -107,7 +107,7 @@ const Onemovie = () => {
       <div className="big-card">
         <div className="flex">
           <div className="image">
-            <img src={moviedata.image} alt={moviedata.movie_name} />
+            <img  src={`http://localhost:5001/uploads/${moviedata.image}`} alt={moviedata.movie_name} />
           </div>
           <div className="content">
             <div className="left">

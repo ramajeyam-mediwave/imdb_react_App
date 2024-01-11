@@ -18,6 +18,17 @@ const MovieForm = () => {
     const { name, value } = e.target;
     setMoviedata({ ...moviedata, [name]: value });
   }
+
+  const handlefile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("picture: ", moviedata);
+    if (e.target.files) {
+      setMoviedata({
+        ...moviedata,
+        image: e.target.files[0],
+      });
+    }
+  };
+
   function handletextArea(e: React.ChangeEvent<HTMLTextAreaElement>) {
     const { name, value } = e.target;
     setMoviedata({ ...moviedata, [name]: value });
@@ -28,21 +39,20 @@ const MovieForm = () => {
   }
   async function handleAddMovie(movie: IMovie) {
     try {
-      const MoviePayload = {
-        movie_name: movie.movie_name,
-        image: movie.image,
-        movie_desc: movie.movie_desc,
-        release_year: movie.release_year,
-      };
-      console.log(MoviePayload);
-      const response = await addMovie(MoviePayload);
+      const formData = new FormData();
+      formData.append("movie_name", movie.movie_name);
+      formData.append("release_year", movie.release_year.toString());
+      formData.append("movie_desc", movie.movie_desc);
+      formData.append("file", movie.image as File);
+
+      const response = await addMovie(formData);
       console.log(response.data.gen_token);
       localStorage.setItem("token", response.data.gen_token);
       setError("");
       setIsModalOpen(true);
     } catch (error: any) {
-      console.log(error.response.data);
-      setError(error.response.data.message);
+      console.log(error);
+      // setError(error.response.data.message);
       setIsModalOpen(true);
     }
   }
@@ -91,12 +101,11 @@ const MovieForm = () => {
           <label htmlFor="url">ImageUrl</label>
 
           <input
-            type="text"
+            type="file"
             id="url"
             name="image"
             placeholder="ImageUrl"
-            value={moviedata.image}
-            onChange={handleChange}
+            onChange={handlefile}
             required
           />
           {/* <h3 >{error}</h3> */}
