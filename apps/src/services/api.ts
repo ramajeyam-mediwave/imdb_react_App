@@ -105,5 +105,5 @@ export const getMovie = async (movieId: number) => {
 };
 
 export const deleteMovieApi = (movieId: string) => {
-  return axiosInstance.delete(`/movies/${movieId}`, setHeaders());
+  return axiosInstance.delete(`/movie/${movieId}`, setHeaders());
 };
